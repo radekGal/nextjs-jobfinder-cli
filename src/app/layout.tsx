@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { QueryClientProvider } from "@/app/queryClient";
+import { Toaster } from "react-hot-toast";
+import Providers from "@/utils/Providers";
 
-const inter = Inter({ subsets: ["latin"] });
+const plus_jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={plus_jakarta.className}>
+        <Providers>
+          <QueryClientProvider>
+            {children}
+          </QueryClientProvider>
+          <Toaster />
+        </Providers>
+      </body>
     </html>
   );
 }
